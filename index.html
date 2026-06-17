@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shaurya Sumuk C | Senior Experience Designer & AI Experience Architect Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Libre Franklin -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Libre Franklin"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#fff5f2',
+                            100: '#ffebe5',
+                            500: '#ff926b', /* Soft Pastel Orange Highlight */
+                            600: '#e0764f',
+                            700: '#c25e38',
+                            900: '#7c3417',
+                        },
+                        bone: {
+                            50: '#fdfcf7',
+                            100: '#f8f6ee', /* Deep Bone White */
+                            200: '#f2edd9',
+                            DEFAULT: '#f9f8f4', /* Primary Bone White background */
+                        },
+                        charcoal: {
+                            50: '#f4f4f5',
+                            100: '#e4e4e7',
+                            800: '#27272a',
+                            900: '#1c1c1e', /* Dark Architectural Grey */
+                            DEFAULT: '#1c1c1e',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Libre Franklin', sans-serif;
+            background-color: #f9f8f4; /* Bone White Background */
+            color: #1c1c1e; /* Dark Charcoal Grey */
+            overflow-x: hidden;
+        }
+
+        /* Technical Blueprint Grid Pattern - Dark grid on Light bone background */
+        .bg-blueprint {
+            background-size: 50px 50px;
+            background-image: 
+                linear-gradient(to right, rgba(28, 28, 30, 0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(28, 28, 30, 0.02) 1px, transparent 1px);
+        }
+
+        /* Hide scrollbars */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Continuous scrolling animation with absolute pixel-perfect seamless looping */
+        @keyframes marquee-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .animate-marquee-left {
+            animation: marquee-left 35s linear infinite;
+        }
+
+        /* Premium Minimalist Card Layouts with Warm Pastel Accent */
+        /* Figma embed fills the full container height */
+        .carousel-track > div {
+            width: 100%;
+            height: 100%;
+            min-height: 560px;
+        }
+        .carousel-track iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 560px;
+        }
+
+        .glass-card {
+            background: rgba(253, 252, 247, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(28, 28, 30, 0.08);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(255, 146, 107, 0.07), transparent 40%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 146, 107, 0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px -10px rgba(255, 146, 107, 0.15);
+        }
+
+        /* Carousel transitions */
+        .carousel-track {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        /* Constrain carousel images to not overflow their container */
+        .carousel-track img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-brand-500 selection:text-charcoal-900 antialiased bg-blueprint">
+
+    <!-- Active Ambient Spotlight Tracking Mouse Coordinates (Pastel Orange Ambient) -->
+    <div id="ambient-spotlight" class="fixed inset-0 pointer-events-none z-0 opacity-70" style="background: radial-gradient(800px circle at var(--x, 0px) var(--y, 0px), rgba(255, 146, 107, 0.05), transparent 50%);"></div>
+
+    <!-- Interactive Background Constellation System Canvas -->
+    <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-40"></canvas>
+
+    <!-- Navigation Header - Fixed at the top, hides dynamically during popup modal -->
+    <header id="fixed-header" class="fixed top-0 left-0 w-full z-40 border-b border-charcoal-900/5 bg-bone/85 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-[1600px] mx-auto px-6 sm:px-[5%] h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+
+                <div>
+                    <span class="font-bold text-charcoal-900 tracking-tight block text-base leading-none">Shaurya Sumuk C</span>
+                    <span class="text-[10px] text-brand-600 font-extrabold tracking-wider uppercase mt-1 block">Senior Experience Designer / AI Experience Architect</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold uppercase tracking-wider text-charcoal-900/60">
+                <a href="#welcome" class="hover:text-charcoal-900 transition-colors">Home</a>
+                <a href="#clients" class="hover:text-charcoal-900 transition-colors">Clients</a>
+                <a href="#projects" class="hover:text-charcoal-900 transition-colors">Featured Projects</a>
+                <a href="#about" class="hover:text-charcoal-900 transition-colors">About & Approach</a>
+                <a href="#contact" class="hover:text-charcoal-900 transition-colors">Contact</a>
+            </nav>
+            
+            </a>
+        </div>
+    </header>
+
+    <!-- Section 1: Hero Welcome & Introduction (with spacing to push below the fixed header) -->
+    <section id="welcome" class="relative z-10 flex flex-col justify-center min-h-[80vh] px-6 sm:px-[5%] max-w-[1600px] mx-auto pt-32 pb-12">
+        <!-- Precision Corner Blueprint Decors -->
+       
+        <div class="space-y-6 max-w-5xl">
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-black text-charcoal-900 tracking-tight leading-[1.08] max-w-4xl">
+                Designing systems <br class="hidden sm:inline">
+                that drive <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 via-brand-500 to-brand-600">meaningful scale</span>
+            </h1>
+
+            <p class="text-base sm:text-lg md:text-xl text-charcoal-900/70 font-light leading-relaxed max-w-3xl">
+                Hi, I'm <strong class="font-extrabold text-charcoal-900 font-sans">Shaurya Sumuk C</strong>, a Senior Experience Designer & AI Experience Architect who delivers highly impactful, system-driven experiences that bridge human intuition and complex enterprise systems.
+            </p>
+
+            <div class="flex flex-wrap gap-4 pt-4">
+                <a href="#projects" class="px-6 py-3.5 bg-brand-500 hover:bg-brand-600 text-charcoal-900 rounded-xl font-bold transition-all shadow-lg shadow-brand-500/20 text-center text-xs">
+                    Explore Handpicked Work
+                </a>
+                <a href="#about" class="px-6 py-3.5 bg-white border border-charcoal-900/10 hover:border-brand-500/30 text-charcoal-900 rounded-xl font-bold transition-all text-center text-xs">
+                    My Design Philosophy
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Compact Client Marquee (Fully aligned container & edge-to-edge marquee loop) -->
+    <section id="clients" class="relative z-10 py-10 bg-white/40 border-y border-charcoal-900/5 overflow-hidden">
+        <div class="max-w-[1600px] mx-auto px-6 sm:px-[5%] mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+                <div class="md:col-span-7">
+                    <h2 class="text-xs uppercase tracking-widest font-extrabold text-brand-600 mb-1 font-mono">Track Record</h2>
+                    <p class="text-xl sm:text-2xl font-black text-charcoal-900">Trusted by Global Giants & Industry Leaders</p>
+                </div>
+                <div class="md:col-span-5">
+                    <p class="text-charcoal-900/60 text-xs sm:text-sm leading-relaxed">
+                        Delivering tailored experience frameworks across healthcare, commerce, sustainability, and finance.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Combined Single-Line Marquee (Expanded edge-to-edge but proportionally bound to visual balance) -->
+        <div class="w-full relative overflow-hidden py-1.5">
+            <!-- Left and Right Gradient Overlay Masks for seamless visual blending on bone background -->
+            <div class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-bone to-transparent z-10 pointer-events-none"></div>
+            <div class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-bone to-transparent z-10 pointer-events-none"></div>
+
+            <div class="flex select-none overflow-hidden w-full relative">
+                <!-- Track 1 -->
+                <div class="flex shrink-0 w-max animate-marquee-left pr-4">
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">PEPSICO</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">MARS WRIGLEY</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">NESTLE PURINA</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">COLGATE</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">MCKESSON</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">ASSOCIATED BANK</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">AMPOL</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">PFIZER</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">BAYADA JOY</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">NATURE'S PATH</span>
+                    </div>
+                </div>
+                <!-- Track 2 (Duplicate for seamless loop) -->
+                <div class="flex shrink-0 w-max aria-hidden animate-marquee-left pr-4">
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">PEPSICO</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">MARS WRIGLEY</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">NESTLE PURINA</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">COLGATE</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">MCKESSON</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">ASSOCIATED BANK</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">AMPOL</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">PFIZER</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">BAYADA JOY</span>
+                    </div>
+                    <div class="flex items-center space-x-2 bg-white border border-charcoal-900/5 px-6 py-3.5 rounded-xl mx-2">
+                        <span class="text-brand-500 font-black text-[10px]">◆</span> <span class="font-extrabold text-charcoal-900/80 tracking-wider text-xs uppercase">NATURE'S PATH</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Handpicked Project Showcase -->
+    <section id="projects" class="relative z-10 py-20 px-6 sm:px-[5%] max-w-[1600px] mx-auto">
+        <div class="mb-14">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-end">
+                <div class="md:col-span-7">
+                    <h2 class="text-xs uppercase tracking-widest font-extrabold text-brand-600 mb-2 font-mono">Selected Case Studies</h2>
+                    <p class="text-2xl sm:text-3xl font-black text-charcoal-900">Deep systems made beautifully accessible.</p>
+                </div>
+                <div class="md:col-span-5">
+                    <p class="text-charcoal-900/60 text-xs sm:text-sm leading-relaxed">
+                        Click any case study card to launch the comprehensive blueprint analyzer, user flow schemas, and detailed interface layouts.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8" id="projects-grid">
+            <!-- Project Card 1: My Chat Lesson (India's First Chat Learning Platform) -->
+            <div onclick="openProject(0)" class="glass-card rounded-2xl p-6 sm:p-8 cursor-pointer group flex flex-col justify-between min-h-[360px] relative">
+                <!-- Huge Subtle Background Index Number -->
+                <div class="absolute right-6 top-6 text-6xl font-black text-charcoal-900/5 select-none group-hover:text-brand-500/10 transition-colors font-mono">01</div>
+                <div>
+                    <div class="flex items-center justify-between mb-6 z-10 relative">
+                        <span class="text-[9px] font-extrabold text-brand-600 uppercase tracking-widest bg-brand-500/10 px-2.5 py-1 rounded-full font-mono">CONVERSATIONAL EDTECH</span>
+                        <span class="text-[11px] text-charcoal-900/50 font-semibold tracking-wide">MY CHAT LESSON</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-charcoal-900 group-hover:text-brand-600 transition-colors tracking-tight leading-tight max-w-[85%] z-10 relative font-sans">
+                        My Chat Lesson: India's First Conversational AI Learning Platform
+                    </h3>
+                    <p class="text-charcoal-900/60 mt-3 line-clamp-3 text-xs sm:text-sm max-w-[90%] z-10 relative leading-relaxed">
+                        India's first chat-based microlearning platform transforming high-school curriculum into engaging, bite-sized conversational stories. By delivering structured syllabus blocks as interactive chat narratives, we achieved a 2.5x higher engagement rate and over 40% more knowledge retention.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-5 border-t border-charcoal-900/10 z-10 relative mt-6">
+                    <span class="text-[10px] font-bold text-charcoal-900/40 uppercase tracking-wider font-mono">Conversational UX & Product Strategy</span>
+                    <span class="flex items-center space-x-1 text-brand-600 font-bold text-xs sm:text-sm">
+                        <span>Explore Case Blueprint</span>
+                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Project Card 2: Sentinel Command Center -->
+            <div onclick="openProject(1)" class="glass-card rounded-2xl p-6 sm:p-8 cursor-pointer group flex flex-col justify-between min-h-[360px] relative">
+                <div class="absolute right-6 top-6 text-6xl font-black text-charcoal-900/5 select-none group-hover:text-brand-500/10 transition-colors font-mono">02</div>
+                <div>
+                    <div class="flex items-center justify-between mb-6 z-10 relative">
+                        <span class="text-[9px] font-extrabold text-brand-600 uppercase tracking-widest bg-brand-500/10 px-2.5 py-1 rounded-full font-mono">HEALTHCARE TECH</span>
+                        <span class="text-[11px] text-charcoal-900/50 font-semibold tracking-wide">HEALTHCARE DOMAIN</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-charcoal-900 group-hover:text-brand-600 transition-colors tracking-tight leading-tight max-w-[85%] z-10 relative font-sans">
+                        Sentinel Command Center
+                    </h3>
+                    <p class="text-charcoal-900/60 mt-3 line-clamp-3 text-xs sm:text-sm max-w-[90%] z-10 relative leading-relaxed">
+                        An AI-powered intelligence web application designed to automatically acquire, synthesize, and track real-time drug regulation amendments, FDA bulletins, and government policy shifts. Leveraging advanced autonomous agents, the platform parses disparate global regulatory feeds to deliver proactive clinical compliance signals.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-5 border-t border-charcoal-900/10 z-10 relative mt-6">
+                    <span class="text-[10px] font-bold text-charcoal-900/40 uppercase tracking-wider font-mono">AI Strategy & Healthcare UX Design</span>
+                    <span class="flex items-center space-x-1 text-brand-600 font-bold text-xs sm:text-sm">
+                        <span>Explore Case Blueprint</span>
+                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </div>
+
+            <!-- Project Card 3: EventTo -->
+            <div onclick="openProject(2)" class="glass-card rounded-2xl p-6 sm:p-8 cursor-pointer group flex flex-col justify-between min-h-[360px] relative">
+                <div class="absolute right-6 top-6 text-6xl font-black text-charcoal-900/5 select-none group-hover:text-brand-500/10 transition-colors font-mono">03</div>
+                <div>
+                    <div class="flex items-center justify-between mb-6 z-10 relative">
+                        <span class="text-[9px] font-extrabold text-brand-600 uppercase tracking-widest bg-brand-500/10 px-2.5 py-1 rounded-full font-mono">AI ASSISTED MARKETPLACE</span>
+                        <span class="text-[11px] text-charcoal-900/50 font-semibold tracking-wide">EVENTTO INC.</span>
+                    </div>
+                    <h3 class="text-xl sm:text-2xl font-extrabold text-charcoal-900 group-hover:text-brand-600 transition-colors tracking-tight leading-tight max-w-[85%] z-10 relative font-sans">
+                        EventTo: AI-Agent Co-Piloted Events App
+                    </h3>
+                    <p class="text-charcoal-900/60 mt-3 line-clamp-3 text-xs sm:text-sm max-w-[90%] z-10 relative leading-relaxed">
+                        The world's first AI-agent co-piloted booking experience. Instead of manual vendor searching, an intelligent agent understands your celebration vision, automatically matches, and bundles catering, floral decor, music, and venues into a single-click reservation.
+                    </p>
+                </div>
+                <div class="flex items-center justify-between pt-5 border-t border-charcoal-900/10 z-10 relative mt-6">
+                    <span class="text-[10px] font-bold text-charcoal-900/40 uppercase tracking-wider font-mono">Multi-Role UX & Transactional Design</span>
+                    <span class="flex items-center space-x-1 text-brand-600 font-bold text-xs sm:text-sm">
+                        <span>Explore Case Blueprint</span>
+                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: About Me & Experience Approach -->
+    <section id="about" class="relative z-10 py-20 px-6 sm:px-[5%] bg-white/40 border-t border-charcoal-900/5">
+        <div class="max-w-[1600px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-16 items-center">
+            
+            <!-- Left Column: Shaurya's Portrait Photo verbatim from user's attached file -->
+            <div class="md:col-span-5 relative group">
+                <div class="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-brand-500/20 to-brand-100/10 opacity-75 blur-lg group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="relative rounded-2xl overflow-hidden border border-charcoal-900/10 bg-bone p-3 shadow-2xl">
+                    <img 
+                        src=".\\img\\20260510_144524(1).jpg" 
+                        alt="Shaurya Sumuk C" 
+                        class="w-full h-auto object-cover rounded-xl grayscale-[15%] group-hover:grayscale-0 transition-all duration-700 aspect-[3/4] object-center max-h-[550px]"
+                        onerror="this.src='C:\\Users\\shaur\\Downloads\\20260510_144524(1).jpg'"
+                    >
+                    <!-- Photo Blueprint Label Tag -->
+                    <div class="absolute bottom-6 left-6 bg-charcoal-900/90 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/10 text-[9px] font-mono text-brand-500 font-bold uppercase tracking-widest">
+                        Senior Experience Designer / AI Experience Architect
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Vision, Pitch & Accolades -->
+            <div class="md:col-span-7 space-y-6">
+                <div class="space-y-3">
+                    <h2 class="text-xs uppercase tracking-widest font-extrabold text-brand-600 font-mono">The Design Philosophy</h2>
+                    <h3 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight leading-tight">
+                        Making the intricate intuitive, at scale.
+                    </h3>
+                    <p class="text-charcoal-900/70 text-xs sm:text-sm leading-relaxed">
+                        Over my years of designing digital systems, I have discovered that beautiful design is only half the battle. True product maturity comes from deep systems thinking, service alignment, and rigorous user-testing with complex payloads.
+                    </p>
+                    <p class="text-charcoal-900/70 text-xs sm:text-sm leading-relaxed">
+                        Whether balancing regulatory constraints in clinical oncology apps, or designing lightning-fast trading environments for global finance firms, I create layouts that elevate efficiency while eliminating operational friction.
+                    </p>
+                </div>
+                
+                <!-- Modernized Domain Tags with User Requested Chips -->
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 bg-brand-500/10 border border-brand-500/30 rounded-xl text-[11px] font-bold text-brand-600 font-mono">HITL workflows</span>
+                    <span class="px-3 py-1.5 bg-brand-500/10 border border-brand-500/30 rounded-xl text-[11px] font-bold text-brand-600 font-mono">AI Augmented Designs</span>
+                    <span class="px-3 py-1.5 bg-white border border-charcoal-900/10 rounded-xl text-[11px] font-semibold text-charcoal-900/80 font-mono">UX Architecture</span>
+                    <span class="px-3 py-1.5 bg-white border border-charcoal-900/10 rounded-xl text-[11px] font-semibold text-charcoal-900/80 font-mono">Design Systems Strategy</span>
+                    <span class="px-3 py-1.5 bg-white border border-charcoal-900/10 rounded-xl text-[11px] font-semibold text-charcoal-900/80 font-mono">Heuristic Analysis</span>
+                    <span class="px-3 py-1.5 bg-white border border-charcoal-900/10 rounded-xl text-[11px] font-semibold text-charcoal-900/80 font-mono">Prototyping Complex Data</span>
+                    <span class="px-3 py-1.5 bg-white border border-charcoal-900/10 rounded-xl text-[11px] font-semibold text-charcoal-900/80 font-mono">Stakeholder Alignment</span>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                    <!-- Stat Card 1 -->
+                    <div class="bg-white border border-charcoal-900/5 p-5 rounded-2xl relative overflow-hidden group hover:border-brand-500/20 transition-all duration-300">
+                        <div class="text-brand-600 font-black text-2xl mb-1">4.5 Years</div>
+                        <div class="text-charcoal-900 font-bold mb-1 text-xs sm:text-sm">Designing Solutions</div>
+                        <p class="text-charcoal-900/60 text-[11px] sm:text-xs leading-relaxed">
+                            Leading research efforts, high-level interaction mapping, and deployment phases across enterprise and startup landscapes.
+                        </p>
+                    </div>
+                    <!-- Stat Card 2 -->
+                    <div class="bg-white border border-charcoal-900/5 p-5 rounded-2xl relative overflow-hidden group hover:border-brand-500/20 transition-all duration-300">
+                        <div class="text-brand-600 font-black text-2xl mb-1">10+ Clients</div>
+                        <div class="text-charcoal-900 font-bold mb-1 text-xs sm:text-sm">Industry Leaders</div>
+                        <p class="text-charcoal-900/60 text-[11px] sm:text-xs leading-relaxed">
+                            Designed custom, mission-critical workflow suites for brands like Colgate, McKesson, and Pfizer.
+                        </p>
+                    </div>
+
+                    <!-- Accolade Highlight: Tiger Superstripes Award Banner Card -->
+                    <div class="sm:col-span-2 bg-gradient-to-tr from-brand-50/50 via-white to-brand-100/20 border border-brand-500/30 p-5 rounded-2xl relative overflow-hidden group hover:border-brand-500/60 transition-all duration-300 shadow-lg shadow-brand-500/5">
+                        <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-brand-500/5 rounded-full blur-xl group-hover:bg-brand-500/10 transition-colors"></div>
+                        <div class="flex items-center space-x-2 mb-2">
+                            <span class="p-1.5 bg-brand-500/10 rounded-lg text-brand-600 border border-brand-500/25">
+                                <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+                                </svg>
+                            </span>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-brand-600 font-mono">Corporate Accolade</span>
+                        </div>
+                        <h4 class="text-charcoal-900 font-extrabold text-base mb-1">Tiger Superstripes Award</h4>
+                        <p class="text-charcoal-900/60 text-[11px] sm:text-xs leading-relaxed">
+                            Honored with this prestigious award for leading the best client solution on the <strong class="text-charcoal-900">AMPOL</strong> project. This achievement celebrated an outstanding cross-functional team effort, syncing product design, IoT telematics engineering, and business strategy to deliver an industry-leading utility dashboard.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section 5: Dynamic Contact / Footer Section -->
+    <section id="contact" class="relative z-10 py-20 px-6 sm:px-[5%] border-t border-charcoal-900/5 max-w-[1600px] mx-auto">
+        <div class="bg-white border border-charcoal-900/10 rounded-3xl p-6 sm:p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-6 md:gap-12 shadow-xl">
+            <div class="space-y-3 max-w-xl text-center md:text-left">
+                <span class="text-[10px] font-black uppercase text-brand-600 tracking-widest font-mono">Connect Directly</span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-charcoal-900 tracking-tight leading-none">
+                    Let's scale your experiences.
+                </h3>
+                <p class="text-charcoal-900/60 text-xs sm:text-sm leading-relaxed">
+                    If your team is facing complex data challenges, legacy workflow hurdles, or is in need of experienced product leadership, reach out.
+                </p>
+            </div>
+            
+            <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row gap-3 w-full md:w-auto">
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center space-x-2 bg-charcoal-900 hover:bg-charcoal-800 text-white px-5 py-3 rounded-xl font-bold transition-all w-full sm:w-auto text-xs shadow-lg shadow-charcoal-900/10">
+                    <svg class="w-4 h-4 text-brand-500" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    <span>LinkedIn</span>
+                </a>
+
+                <!-- Email -->
+                <button onclick="copyToClipboard('hello@shauryasumuk.com')" class="relative flex items-center justify-center space-x-2 bg-brand-500 hover:bg-brand-600 text-charcoal-900 px-5 py-3 rounded-xl font-bold transition-all w-full sm:w-auto shadow-lg shadow-brand-500/20 text-xs">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    <span>Email Address</span>
+                </button>
+
+                <!-- Phone -->
+                <a href="tel:+15550199" class="flex items-center justify-center space-x-2 bg-white border border-charcoal-900/10 hover:border-brand-500 text-charcoal-900 px-5 py-3 rounded-xl font-bold transition-all w-full sm:w-auto text-xs">
+                    <svg class="w-4 h-4 text-brand-600" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                    </svg>
+                    <span>Direct Call</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-14 pt-6 border-t border-charcoal-900/5 flex flex-col sm:flex-row items-center justify-between text-xs text-charcoal-900/50 gap-4">
+            <p>© 2026 Shaurya Sumuk C. All rights reserved.</p>
+        
+        </div>
+    </section>
+
+    <!-- Floating Copy Toast Notification -->
+    <div id="toast" class="fixed bottom-8 right-8 bg-charcoal-900 border border-brand-500 text-white px-5 py-3.5 rounded-xl shadow-2xl flex items-center space-x-3 pointer-events-none transform translate-y-12 opacity-0 transition-all duration-300 z-50">
+        <span class="w-2 h-2 rounded-full bg-brand-500 animate-ping"></span>
+        <span class="font-semibold text-xs sm:text-sm" id="toast-message">Email copied to clipboard!</span>
+    </div>
+
+    <!-- Case Study Detail Overlay (LIGHT THEME MATCHING BONE WHITE CONFIG) -->
+    <div id="project-modal" class="fixed inset-0 w-full h-full z-50 flex items-center justify-center bg-bone/95 opacity-0 pointer-events-none transition-all duration-300 p-4 sm:p-6 md:p-8 overflow-y-auto">
+        <!-- Inside Modal container -->
+        <div class="bg-bone border border-charcoal-900/10 rounded-3xl w-full max-w-6xl overflow-hidden shadow-2xl relative flex flex-col mx-auto text-charcoal-900">
+            
+            <!-- Sticky Modal Header -->
+            <div class="sticky top-0 bg-bone/95 backdrop-blur-md z-20 px-6 sm:px-10 py-5 border-b border-charcoal-900/10 flex items-center justify-between">
+                <div class="max-w-[75%]">
+                    <span id="modal-project-domain" class="text-[10px] uppercase font-extrabold text-brand-600 tracking-wider font-mono">PROJECT INDUSTRY</span>
+                    <h3 id="modal-project-title" class="text-lg sm:text-2xl font-black text-charcoal-900 tracking-tight mt-0.5 leading-snug">Project Title Highlight</h3>
+                </div>
+                <button onclick="closeProject()" class="p-2.5 bg-charcoal-900/5 hover:bg-charcoal-900/10 text-charcoal-900 rounded-xl transition-all" aria-label="Close modal">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <!-- Modal Content (Scroller) -->
+            <div class="p-6 sm:p-10 space-y-10 overflow-y-auto max-h-[78vh] no-scrollbar">
+                <!-- Textual Breakdown details (Split View - DURATION REMOVED) -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 pb-6 border-b border-charcoal-900/10">
+                    <div class="lg:col-span-7 space-y-3">
+                        <h4 class="text-[10px] uppercase font-extrabold tracking-widest text-charcoal-900/50 font-mono">Problem & Solution Strategy</h4>
+                        <p id="modal-project-desc" class="text-charcoal-900/80 text-xs sm:text-sm leading-relaxed">
+                            Deep explanation details about the operational problem we encountered and design system framework we utilized...
+                        </p>
+                    </div>
+                    <div class="lg:col-span-5 grid grid-cols-2 gap-4 bg-white p-5 rounded-2xl border border-charcoal-900/10">
+                        <div>
+                            <span class="text-[9px] uppercase font-bold text-charcoal-900/50 tracking-wider font-mono">Client Context</span>
+                            <p id="modal-project-client" class="text-charcoal-900 text-xs font-bold mt-1">Brand Partner</p>
+                        </div>
+                        <div>
+                            <span class="text-[9px] uppercase font-bold text-charcoal-900/50 tracking-wider font-mono">Success Metrics</span>
+                            <p id="modal-project-metrics" class="text-brand-600 text-xs font-extrabold mt-1">+43% Task Accuracy</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Big-Sized Carousel Gallery Section -->
+                <div class="space-y-4">
+                    <!-- Carousel Nav Buttons -->
+                    <div id="carousel-controls" class="flex sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                            <h4 class="text-[10px] uppercase font-extrabold tracking-widest text-brand-600 font-mono">Interactive Blueprint & UI Deck</h4>
+                            <p class="text-charcoal-900/60 text-xs mt-0.5">Examine real system frames, node flow outlines, and final interactive templates.</p>
+                        </div>
+                        <div id="carousel-nav-buttons" class="flex items-center space-x-2">
+                            <button onclick="prevSlide()" class="p-2 bg-charcoal-900/5 hover:bg-charcoal-900/10 text-charcoal-900/60 hover:text-charcoal-900 rounded-xl transition-all">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+                            </button>
+                            <span id="carousel-indicator" class="text-xs font-mono font-bold text-charcoal-900/60 px-3 py-1.5 bg-charcoal-900/5 rounded-xl border border-charcoal-900/5">1 / 5</span>
+                            <button onclick="nextSlide()" class="p-2 bg-charcoal-900/5 hover:bg-charcoal-900/10 text-charcoal-900/60 hover:text-charcoal-900 rounded-xl transition-all">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Slide / Figma Container -->
+                    <div id="carousel-container" class="relative overflow-hidden w-full bg-bone-100 rounded-2xl border border-charcoal-900/10 flex flex-col">
+                        <!-- Active Slide Description Heading -->
+                        <div id="slide-step-heading" class="p-3 bg-charcoal-900/5 border-b border-charcoal-900/5 flex items-center justify-between z-10">
+                            <span id="slide-step-tag" class="text-[9px] font-bold text-brand-600 tracking-wider uppercase font-mono">Slide step tag</span>
+                        </div>
+
+                        <!-- Inner Slide track -->
+                        <div class="carousel-track h-full w-full animate-fadeIn" id="carousel-track-inner">
+                            <!-- Injected dynamically -->
+                        </div>
+
+                        <!-- Pagination Dots -->
+                        <div id="carousel-dots-wrapper" class="p-3 bg-bone-100/95 border-t border-charcoal-900/5 flex justify-center space-x-2 z-10">
+                            <!-- Injected dots -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Research Insights Wrapper -->
+                <div id="modal-research-container" class="space-y-10 pt-6 border-t border-charcoal-900/10">
+                    <!-- Dynamic blocks will be cleanly toggled or populated by project index selection below -->
+                </div>
+
+                <!-- Strategic Summary / Key Takeaways -->
+                <div class="bg-white border border-charcoal-900/10 rounded-2xl p-5 sm:p-7 space-y-3">
+                    <h4 class="text-[10px] uppercase font-extrabold tracking-widest text-brand-600 font-mono">Key UX Breakthrough</h4>
+                    <p id="modal-project-takeaway" class="text-charcoal-900/80 text-xs sm:text-sm leading-relaxed">
+                        A detailed description outlining how our architectural and UI choices specifically resolved user pain points and generated significant cost/time reductions for our clients.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Logic -->
+    <script>
+        // Projects Data Structure (Including detailed mock blueprints and mockups)
+        const projectsData = [
+            {
+                title: "My Chat Lesson: India's First Chat Learning Platform",
+                domain: "Conversational EdTech",
+                client: "My Chat Lesson Pvt. Ltd.",
+                role: "Lead Experience Designer / AI Experience Architect",
+                metrics: "+55% Active Retention, 92% Lesson Completion",
+                desc: "Today's teenagers spend a massive amount of time on messaging apps but struggle with cognitive fatigue and distraction on traditional, dry educational systems. I designed My Chat Lesson—India's first chat learning platform. By transforming high-school curriculum into dynamic, branching conversational microlearning stories, we built an engaging, interactive learning environment. Users make decisions, participate in embedded challenges, and visual diagnostics are directly served in their daily messaging screen loop.",
+                takeaway: "By shifting from passive video/text blocks to active conversational dialogues, students achieved a 92% curriculum completion rate. Replicating the lightweight chat style teenagers use daily successfully trimmed lesson study cycles by 40%.",
+                slides: [
+                    {
+                        tag: "My Chat Lesson",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-center items-center">
+                    <img 
+                        src=".\\img\\Page 1.png" 
+                        alt="Shaurya Sumuk C" 
+                        class="w-full h-full object-contain rounded-xl"
+                
+                    >
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Brand Guidelines",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col items-center justify-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Page 2.png" onerror="this.src='C:\\Users\\shaur\\Documents\\MCL Imgs\\Page 2.png'" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                            <!-- Fallback interactive schematic layout -->
+                            <div class="p-4 sm:p-6 flex flex-col items-center justify-center font-sans w-full h-full">
+                                <div class="w-64 bg-white border border-charcoal-900/10 rounded-3xl p-3.5 space-y-3.5 text-left">
+                                    <div class="flex items-center space-x-2 border-b border-charcoal-900/5 pb-2">
+                                        <div class="w-6 h-6 rounded-full bg-charcoal-900/10"></div>
+                                        <div class="h-2 w-20 bg-charcoal-900/10 rounded-full"></div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div class="h-6 w-4/5 bg-charcoal-900/5 rounded-2xl rounded-tl-none"></div>
+                                        <div class="h-8 w-3/4 bg-charcoal-900/5 rounded-2xl rounded-tl-none"></div>
+                                    </div>
+                                    <div class="space-y-1.5 pt-2">
+                                        <div class="h-6 w-full border border-charcoal-900/10 rounded-xl bg-charcoal-900/5"></div>
+                                        <div class="h-6 w-full border border-charcoal-900/10 rounded-xl bg-charcoal-900/5"></div>
+                                    </div>
+                                </div>
+                                <p class="text-[9px] text-charcoal-900/50 mt-2.5 text-center leading-relaxed">Initial chat-bubble layout skeleton focusing strictly on standard dialogue sizing constraints.</p>
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Userflow",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col items-center justify-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Page 3.png" onerror="this.src='C:\\Users\\shaur\\Documents\\MCL Imgs\\Page 2.png'";" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                            <!-- Fallback interactive schematic layout -->
+                            <div class="p-4 sm:p-6 flex flex-col items-center justify-center font-sans w-full h-full">
+                                <div class="w-64 bg-white border border-charcoal-900/10 rounded-3xl p-3.5 space-y-3 text-left">
+                                    <div class="h-3 w-16 bg-charcoal-900/10 rounded-full mb-1"></div>
+                                    <div class="bg-charcoal-900/5 border border-charcoal-900/10 p-2 rounded-xl flex items-center space-x-2">
+                                        <div class="w-10 h-10 bg-charcoal-900/10 rounded-lg flex items-center justify-center">
+                                            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/></svg>
+                                        </div>
+                                        <div class="flex-1 space-y-1">
+                                            <div class="h-2 w-24 bg-charcoal-900/10 rounded-full"></div>
+                                            <div class="h-1.5 w-12 bg-charcoal-900/5 rounded-full"></div>
+                                        </div>
+                                    </div>
+                                    <div class="h-5 w-40 bg-brand-500/10 border border-brand-500/20 text-brand-600 rounded-full text-[8px] font-bold uppercase tracking-wider flex items-center justify-center">
+                                        Assess Interactive Element
+                                    </div>
+                                </div>
+    
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Wireframes",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-between">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Page 4.png" onerror="this.src='C:\\Users\\shaur\\Documents\\MCL Imgs\\Page 4.png'";" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                            <!-- Fallback interactive schematic layout -->
+                            <div class="p-4 sm:p-6 flex flex-col justify-between font-sans w-full h-full">
+                                <div class="flex items-center justify-between border-b border-charcoal-900/10 pb-2">
+                                    <span class="text-[9px] text-charcoal-900/60 font-mono">My Chat Lesson UI Suite</span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></span>
+                                </div>
+                                <div class="space-y-3 my-auto max-w-sm mx-auto">
+                                    
+                                        <div class="w-6 h-6 rounded-full bg-brand-500 flex items-center justify-center text-charcoal-900 text-[9px] font-black font-mono">C</div>
+                                        <div class="bg-white border border-charcoal-900/10 p-2 rounded-2xl rounded-tl-none text-[10px] text-charcoal-900/80 leading-relaxed">
+                                            Hey Shaurya! Do you know how plant cells process sunlight? 🌱
+                                        </div>
+                                    </div>
+                                    
+                                        <div class="bg-brand-500/10 border border-brand-500/30 p-2.5 rounded-2xl rounded-tr-none text-[10px] text-brand-600 leading-relaxed text-right">
+                                            Let's find out! Is it through Photosynthesis?
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Wireframes",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-between">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Page 5.png" onerror="this.src='C:\\Users\\shaur\\Documents\\MCL Imgs\\Page 5.png'";" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                            <!-- Fallback interactive schematic layout -->
+                        
+                            
+                        `
+                    },
+                    {
+                        tag: "Home Page",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-between">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Page 7.png" onerror="'C:\\Users\\shaur\\Documents\\MCL Imgs\\Page 7.png';" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                            <!-- Fallback interactive schematic layout -->
+                            
+                                    
+                                    </div>
+                                </div>
+                            
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Chat Bot Page",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-center items-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Page 9.png" onerror="'C:\\Users\\shaur\\Documents\\MCL Imgs\\Page 9.png';" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                            <!-- Fallback interactive schematic layout -->
+                        
+                            </div>
+                        </div>
+                        `
+                    }
+                ]
+            },
+            {
+                title: "Sentinel Command Center",
+                domain: "Healthcare Tech",
+                client: "Healthcare Domain Partner",
+                role: "Senior UX Consultant / AI Experience Architect",
+                metrics: "94% Faster AI Info Recovery • 90.8% AI Data Accuracy",
+                desc: "An AI-powered intelligence web application designed to automatically acquire, synthesize, and track real-time drug regulation amendments, FDA bulletins, and government policy shifts. Leveraging advanced autonomous agents, the platform parses disparate global regulatory feeds to deliver proactive clinical compliance signals.",
+                takeaway: "By replacing a multi-step brand-specific checkout flow with a centralized multi-cart system, we scaled automated tracking efficiency and prevented regulatory review blind spots.",
+                slides: [
+                    {
+                        tag: "Sentinel Command Center",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-center items-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\McKesson Page 1.png" onerror='C:\\Users\\shaur\\Documents\\MCL Imgs\\Page 9.png';" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                            <!-- Fallback interactive schematic layout -->
+                            <div class="p-4 sm:p-6 flex flex-col justify-center items-center text-center space-y-3 font-sans w-full h-full">
+                                <div class="text-brand-600 text-[10px] uppercase tracking-widest font-extrabold font-mono">Secure Access Gateway</div>
+                                <h6 class="text-sm font-bold text-charcoal-900">Login Interface</h6>
+                                <div class="w-64 bg-white border border-charcoal-900/10 rounded-2xl p-4 space-y-2.5 text-left">
+                                    <div class="h-2 w-12 bg-charcoal-900/20 rounded"></div>
+                                    <div class="h-7 w-full bg-bone border border-charcoal-900/10 rounded-lg"></div>
+                                    <div class="h-2 w-16 bg-charcoal-900/20 rounded"></div>
+                                    <div class="h-7 w-full bg-bone border border-charcoal-900/10 rounded-lg"></div>
+                                    <div class="h-7 w-full bg-brand-500 rounded-lg"></div>
+                                </div>
+                                <p class="text-[9px] text-charcoal-900/50 max-w-sm">Consolidated single sign-on supporting secure enterprise compliance accounts.</p>
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Overview",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-center items-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Group 1597882396.png" onerror="'C:\\Users\\shaur\\Documents\\MCL Imgs\\Group 1597882396.png';" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                        
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Signal Summary",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-center items-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Summary Dashboard Page 1.png" onerror="'C:\\Users\\shaur\\Documents\\MCL Imgs\\Summary Dashboard Page 1.png';" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                    
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Column Selection Drop Down",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-center items-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Summary Dashboard Page 2.png" onerror="'C:\\Users\\shaur\\Documents\\MCL Imgs\\Summary Dashboard Page 2.png';" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                        
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Chatbot Side Panel",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-center items-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Chabot Side Panel.png" onerror="'C:\\Users\\shaur\\Documents\\MCL Imgs\\Summary Dashboard Page.png';" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                        
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "HITL Deep Dive View",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-center items-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\HITL View .png" onerror="C:\\Users\\shaur\\Documents\\MCL Imgs\\HITL View .png';" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                          
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Sentinel AI Chatbot Interface",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-center items-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Chat Interface 1.png" onerror="C:\\Users\\shaur\\Documents\\MCL Imgs\\Chat Interface 1.png';" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                        
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Sentinel AI Chatbot Interface - Conversing with the AI",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-center items-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Chat Interface 2.png" onerror="C:\\Users\\shaur\\Documents\\MCL Imgs\\Chat Interface 2.png';" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                        
+                            </div>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Sentinel AI Chatbot Interface - Response Generated by AI",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex flex-col justify-center items-center">
+                            <!-- EMPTY PLACEHOLDER -->
+                            <img src=".\\img\\Chat Interface 3.png" onerror="C:\\Users\\shaur\\Documents\\MCL Imgs\\Chat Interface 3.png';" class="absolute inset-0 w-full h-full object-contain z-20" alt="Slide Image Placeholder">
+                            
+                    
+                            </div>
+                        </div>
+                        `
+                    },
+                
+                ]
+            },
+            {
+                title: "EventTo: AI-Agent Co-Piloted Events App",
+                domain: "AI Assisted Marketplace",
+                client: "EventTo Inc.",
+                role: "Principal Experience Architect / AI Experience Architect",
+                metrics: "+42% Co-Pilot Conversion • 94% Reduction in Manual Planning Time",
+                desc: "Traditional event planning demands endless hours of manual vendor vetting, scattered phone calls, and complex pricing negotiations. EventTo revolutionizes this as the only tool in the world where an intelligent AI Agent acts as your personal co-pilot. By understanding your specific celebration needs—whether a cozy pastel engagement or a large corporate product launch—the Agent interprets your aesthetic, spatial, and budgetary preferences. It dynamically curates, matches, and suggests custom-bundled vendor options (venues, florists, music systems, and catering packages) for a seamless, single-click transactional checkout.",
+                takeaway: "By shifting from manual directory searches to an AI-assisted co-pilot, EventTo streamlined the planning cycle, lowering transaction friction and cutting booking times by over 90% for customers.",
+                slides: [
+                    {
+                        tag: "User Flow",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex items-center justify-center p-2" style="min-height: 600px;">
+                            <iframe 
+                                style="border: none; width: 100%; height: 100%; border-radius: 12px;"
+                                src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/dygtJLyIdSLu92xQep7el1/EventTO?node-id=1412-14344&t=HfSkS8rCEIyc3Kyd-1&scaling=scale-down&content-scaling=fixed&page-id=2%3A3&starting-point-node-id=1412%3A14344&show-proto-sidebar=1"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Customer View",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex items-center justify-center p-2">
+                            <iframe 
+                                style="border: none; width: 100%; height: 100%; border-radius: 12px;"
+                                src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/dygtJLyIdSLu92xQep7el1/EventTO?node-id=1412-14344&t=HfSkS8rCEIyc3Kyd-1&scaling=scale-down&content-scaling=fixed&page-id=2%3A3&starting-point-node-id=1412%3A14344&show-proto-sidebar=1"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Vendor View",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex items-center justify-center p-2">
+                            <iframe 
+                                style="border: none; width: 100%; height: 100%; border-radius: 12px;"
+                                src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/dygtJLyIdSLu92xQep7el1/EventTO?node-id=1412-14344&t=HfSkS8rCEIyc3Kyd-1&scaling=scale-down&content-scaling=fixed&page-id=2%3A3&starting-point-node-id=1412%3A14344&show-proto-sidebar=1"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Admin View",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex items-center justify-center p-2">
+                            <iframe 
+                                style="border: none; width: 100%; height: 100%; border-radius: 12px;"
+                                src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/dygtJLyIdSLu92xQep7el1/EventTO?node-id=1412-14344&t=HfSkS8rCEIyc3Kyd-1&scaling=scale-down&content-scaling=fixed&page-id=2%3A3&starting-point-node-id=1412%3A14344&show-proto-sidebar=1"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                        `
+                    },
+                    {
+                        tag: "Visual Design",
+                        html: `
+                        <div class="relative w-full h-full bg-bone-100 flex items-center justify-center p-2">
+                            <iframe 
+                                style="border: none; width: 100%; height: 100%; border-radius: 12px;"
+                                src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/proto/dygtJLyIdSLu92xQep7el1/EventTO?node-id=1412-14344&t=HfSkS8rCEIyc3Kyd-1&scaling=scale-down&content-scaling=fixed&page-id=2%3A3&starting-point-node-id=1412%3A14344&show-proto-sidebar=1"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                        `
+                    }
+                ]
+            }
+        ];
+
+        // Active State variables for Popup Carousel
+        let activeProjectIndex = null;
+        let activeSlideIndex = 0;
+
+        // HTML templates representing UX research structures
+        const researchHtmlMyChatLesson = `
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase font-extrabold text-brand-600 tracking-widest font-mono">Problems Identified</h4>
+                <p class="text-charcoal-900/60 text-xs">Analysis of core classroom issues identified during initial scoping.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">01. Understanding Subject Matter</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">Some students may have trouble grasping concepts taught in class, which can make it difficult for them to keep up with the pace of the course.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">02. Limited Time in Class</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">Teachers have a set amount of time to cover a large amount of material. As a result, students feel rushed or overwhelmed, making comprehension difficult.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">03. Different Learning Styles</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">Students have different learning styles. What works for one student may not work for another, making it challenging for teachers to engage all students.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">04. Lack of Individual Attention</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">With large class sizes, teachers may not have the time or resources to provide each student with individual attention and support.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">05. Lack of Motivation</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">Some students feel unmotivated to learn a particular subject, which hinders their progress and makes it difficult to stay focused.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase font-extrabold text-brand-600 tracking-widest font-mono">Primary Target User Persona</h4>
+                <p class="text-charcoal-900/60 text-xs">Deep-dive customer profiles driving the core architecture.</p>
+                <div class="bg-white border border-charcoal-900/10 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-12 gap-6">
+                    <div class="md:col-span-3 flex flex-col items-center justify-center text-center space-y-3 bg-bone-100 p-4 rounded-xl border border-charcoal-900/5">
+                        <div class="w-20 h-20 rounded-full overflow-hidden border border-brand-500/30 bg-white">
+                            <img src="https://placehold.co/150x150/1c1c1e/ff926b?text=Umesh" alt="Umesh (Parent)" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h5 class="text-sm font-bold text-charcoal-900">Umesh</h5>
+                            <p class="text-[10px] text-brand-600 font-mono">Bengaluru, India</p>
+                            <span class="inline-block mt-1 px-2.5 py-0.5 bg-brand-500/10 text-brand-600 rounded-full text-[9px] font-bold font-mono">Parent</span>
+                        </div>
+                    </div>
+                    <div class="md:col-span-9 space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <span class="text-[10px] font-mono text-charcoal-900/40 block uppercase">About</span>
+                                <p class="text-xs text-charcoal-900/80 leading-relaxed mt-0.5">Software Developer and a Parent of a 14-year-old. Usually helps his kid complete homework and understand concepts since he has experience as a Professor.</p>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-mono text-charcoal-900/40 block uppercase">Motivations</span>
+                                <p class="text-xs text-charcoal-900/80 leading-relaxed mt-0.5">Primary motivation is to get his daughter the best learning experience possible.</p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t border-charcoal-900/10 pt-4">
+                            <div>
+                                <span class="text-[10px] font-mono text-charcoal-900/40 block uppercase">Goals</span>
+                                <ul class="list-disc pl-4 text-xs text-charcoal-900/80 space-y-1 mt-1">
+                                    <li>Make sure his daughter is up to date with the syllabus.</li>
+                                    <li>See to it that concepts explained to her are thorough by asking her questions.</li>
+                                    <li>Avoid tuitions since school timings are 9-5 and make her tired or lazy.</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <span class="text-[10px] font-mono text-charcoal-900/40 block uppercase">Pain Points</span>
+                                <ul class="list-disc pl-4 text-xs text-charcoal-900/80 space-y-1 mt-1">
+                                    <li>Tough to catch up with the syllabus updates.</li>
+                                    <li>Online teaching platforms are very expensive.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase font-extrabold text-brand-600 tracking-widest font-mono">Qualitative Analysis</h4>
+                <p class="text-charcoal-900/60 text-xs">Direct feedback gathered from user segment interviews.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div class="bg-white border border-charcoal-900/10 p-5 rounded-xl flex flex-col justify-between space-y-4">
+                        <p class="text-xs text-charcoal-900/80 italic leading-relaxed">"Having classes from 9-3 is tiring. Then again going to tuitions at 5 makes me very lazy and we can't grasp anything that's taught there. Because it's getting a recap of everything."</p>
+                        <div class="flex items-center space-x-2 pt-3 border-t border-charcoal-900/10">
+                            <div class="w-8 h-8 rounded-full bg-bone-100 flex items-center justify-center font-bold text-xs text-brand-600 font-mono">R</div>
+                            <div>
+                                <h6 class="text-[11px] font-bold text-charcoal-900">Raj, 16</h6>
+                                <p class="text-[9px] text-charcoal-900/40">Student Interviewee</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-5 rounded-xl flex flex-col justify-between space-y-4">
+                        <p class="text-xs text-charcoal-900/80 italic leading-relaxed">"I usually do my homework after school and that's it. Because my friends and I either have a group study few weeks before exams or just revise on WhatsApp. Tuitions are expensive and it's tough to sit through all subjects everyday after school. Wish there was a better option."</p>
+                        <div class="flex items-center space-x-2 pt-3 border-t border-charcoal-900/10">
+                            <div class="w-8 h-8 rounded-full bg-bone-100 flex items-center justify-center font-bold text-xs text-brand-600 font-mono">P</div>
+                            <div>
+                                <h6 class="text-[11px] font-bold text-charcoal-900">Pranith, 16</h6>
+                                <p class="text-[9px] text-charcoal-900/40">Student Interviewee</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-5 rounded-xl flex flex-col justify-between space-y-4">
+                        <p class="text-xs text-charcoal-900/80 italic leading-relaxed">"Me being a teacher and a parent, I can understand how it feels like for kids to go through the whole book. Some byheart and very few learn and understand the concept and struggle to keep up. It's tough for me to keep up with my kid's syllabus and teach her at home as well."</p>
+                        <div class="flex items-center space-x-2 pt-3 border-t border-charcoal-900/10">
+                            <div class="w-8 h-8 rounded-full bg-bone-100 flex items-center justify-center font-bold text-xs text-brand-600 font-mono">R</div>
+                            <div>
+                                <h6 class="text-[11px] font-bold text-charcoal-900">Roopa, 35</h6>
+                                <p class="text-[9px] text-charcoal-900/40">Parent / Teacher</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase font-extrabold text-brand-600 tracking-widest font-mono">Competitive Landscape Review</h4>
+                <p class="text-charcoal-900/60 text-xs">Strengths, weaknesses, and structural limits of leading competitors.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white border border-charcoal-900/10 rounded-xl p-5 space-y-4">
+                        <div class="flex items-center justify-between border-b border-charcoal-900/10 pb-2">
+                            <span class="text-sm font-bold text-charcoal-900">BYJU'S Audit</span>
+                            <span class="text-[9px] font-mono text-charcoal-900/40">CONGLOMERATE MODEL</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-xs">
+                            <div class="space-y-1">
+                                <span class="font-bold text-emerald-600 font-mono block text-[10px]">STRENGTHS</span>
+                                <ul class="list-disc pl-4 text-charcoal-900/80 space-y-0.5">
+                                    <li>Strong Brand Presence</li>
+                                    <li>Diverse Course Offerings</li>
+                                    <li>Personalized learning loops</li>
+                                    <li>High Student Retention</li>
+                                </ul>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="font-bold text-rose-600 font-mono block text-[10px]">WEAKNESSES</span>
+                                <ul class="list-disc pl-4 text-charcoal-900/80 space-y-0.5">
+                                    <li>High Subscription Costs</li>
+                                    <li>Similar to formal school teaching style</li>
+                                    <li>Students tire of long formats</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 rounded-xl p-5 space-y-4">
+                        <div class="flex items-center justify-between border-b border-charcoal-900/10 pb-2">
+                            <span class="text-sm font-bold text-charcoal-900">Khan Academy Audit</span>
+                            <span class="text-[9px] font-mono text-charcoal-900/40">FREE GENERALIZED CATALOG</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 text-xs">
+                            <div class="space-y-1">
+                                <span class="font-bold text-emerald-600 font-mono block text-[10px]">STRENGTHS</span>
+                                <ul class="list-disc pl-4 text-charcoal-900/80 space-y-0.5">
+                                    <li>Wide Range of Subjects</li>
+                                    <li>100% Free platform to use</li>
+                                    <li>User-friendly UI structure</li>
+                                    <li>Downloadable content</li>
+                                </ul>
+                            </div>
+                            <div class="space-y-1">
+                                <span class="font-bold text-rose-600 font-mono block text-[10px]">WEAKNESSES</span>
+                                <ul class="list-disc pl-4 text-charcoal-900/80 space-y-0.5">
+                                    <li>Lack of interaction</li>
+                                    <li>Limited languages</li>
+                                    <li>Provides limited diagnostic feedback</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase font-extrabold text-brand-600 tracking-widest font-mono">User Interview Script</h4>
+                <p class="text-charcoal-900/60 text-xs">The research instrument deployed to map quantitative student triggers.</p>
+                <div class="bg-white border border-charcoal-900/10 rounded-xl p-6">
+                    <ol class="list-decimal pl-5 text-xs text-charcoal-900/80 space-y-2 font-mono">
+                        <li>What subjects do you find the most challenging and why?</li>
+                        <li>Do you think your current method of studying is effective? Why or why not?</li>
+                        <li>How much time do you spend studying each day, and how do you manage your time?</li>
+                        <li>Do you attend tuition or after-school programs? Why or why not?</li>
+                        <li>Have you used any e-learning apps before? If so, which ones and what did you think of them?</li>
+                        <li>Do you prefer using textbooks or online resources when studying? Why?</li>
+                        <li>Are there any particular topics or concepts that you find difficult to understand, even after going through them multiple times?</li>
+                        <li>What motivates you to learn and do well in school?</li>
+                        <li>Do you think e-learning apps can be helpful in improving your understanding of the subjects? Why or why not?</li>
+                        <li>What features do you think would make e-learning apps more effective and engaging for you?</li>
+                    </ol>
+                </div>
+            </div>
+        `;
+
+        // Sentinel Command Center (Project 2) Research Data (Persona and Competitive Analysis removed)
+        const researchHtmlSentinelCommandCenter = `
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase font-extrabold text-brand-600 tracking-widest font-mono">Problems Identified</h4>
+                <p class="text-charcoal-900/60 text-xs">Primary clinical research and policy data barriers in pharmaceutical workflows.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">01. Signal Delays</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">FDA drug classifications and government safety bulletins frequently lag in manual compliance registers, creating massive legal exposure.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">02. Compliance Signal Noise</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">Compliance managers receive excessive, poorly contextualized global policy updates daily, leading to severe analysis fatigue.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">03. Policy Ambiguity</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">Complex policy alterations require clinical context. Opaque, black-box data models fail to explain *why* specific drug pipelines are flagged.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">04. Manual Review Latency</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">Siloed tracking processes require multi-hour expert clinical reviews for basic legal validation steps, stalling manufacturing launches.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">05. Audit Accountability</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">No transparent history trails exist when compliance experts override automated crawler outputs, leading to accountability gaps during external audits.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase font-extrabold text-brand-600 tracking-widest font-mono">Qualitative Analysis</h4>
+                <p class="text-charcoal-900/60 text-xs">Transcripts from pharmaceutical compliance team reviews.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div class="bg-white border border-charcoal-900/10 p-5 rounded-xl flex flex-col justify-between space-y-4">
+                        <p class="text-xs text-charcoal-900/80 italic leading-relaxed">"When the automated agent identifies a policy shift, we still have to spend hours searching through PDF files to confirm why it was flagged. We need the clinical context immediately."</p>
+                        <div class="flex items-center space-x-2 pt-3 border-t border-charcoal-900/10">
+                            <div class="w-8 h-8 rounded-full bg-bone-100 flex items-center justify-center font-bold text-xs text-brand-600 font-mono">D</div>
+                            <div>
+                                <h6 class="text-[11px] font-bold text-charcoal-900">David, 41</h6>
+                                <p class="text-[9px] text-charcoal-900/40">Legal Counsel</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-5 rounded-xl flex flex-col justify-between space-y-4">
+                        <p class="text-xs text-charcoal-900/80 italic leading-relaxed">"I waste so much time dismissing identical low-impact updates. If I could override agent tracking rules right from the telemetry log, it would save hours of review work."</p>
+                        <div class="flex items-center space-x-2 pt-3 border-t border-charcoal-900/10">
+                            <div class="w-8 h-8 rounded-full bg-bone-100 flex items-center justify-center font-bold text-xs text-brand-600 font-mono">A</div>
+                            <div>
+                                <h6 class="text-[11px] font-bold text-charcoal-900">Amanda, 34</h6>
+                                <p class="text-[9px] text-charcoal-900/40">Drug Safety Specialist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-5 rounded-xl flex flex-col justify-between space-y-4">
+                        <p class="text-xs text-charcoal-900/80 italic leading-relaxed">"The AI crawling is impressive, but we can't trust recommendations blindly. Without a transparent audit trail showing why the agent flagged a change, we can't present it to the board."</p>
+                        <div class="flex items-center space-x-2 pt-3 border-t border-charcoal-900/10">
+                            <div class="w-8 h-8 rounded-full bg-bone-100 flex items-center justify-center font-bold text-xs text-brand-600 font-mono">K</div>
+                            <div>
+                                <h6 class="text-[11px] font-bold text-charcoal-900">Kevin, 45</h6>
+                                <p class="text-[9px] text-charcoal-900/40">Director of Regulatory Operations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase font-extrabold text-brand-600 tracking-widest font-mono">User Interview Script</h4>
+                <p class="text-charcoal-900/60 text-xs">Interview inquiry metrics designed to audit drug policy verification workflows.</p>
+                <div class="bg-white border border-charcoal-900/10 rounded-xl p-6">
+                    <ol class="list-decimal pl-5 text-xs text-charcoal-900/80 space-y-2 font-mono">
+                        <li>How do you identify, audit, and log real-time drug policy changes?</li>
+                        <li>What sources do you trust most for automated safety amendments?</li>
+                        <li>Describe a scenario where a delayed regulatory warning caused product complications.</li>
+                        <li>How much time do you spend sorting through minor compliance alerts daily?</li>
+                        <li>Which regulatory telemetry feeds are most critical for your risk audits?</li>
+                        <li>How are legislative changes communicated to manufacturing and supply chain operators?</li>
+                        <li>What are your biggest hurdles when verifying drug-related bulletins?</li>
+                        <li>What tracking tools are currently used to log manual overrides?</li>
+                        <li>Which parts of standard policy review processes lead to human error?</li>
+                        <li>What designs would give you greater confidence in autonomous compliance agents?</li>
+                    </ol>
+                </div>
+            </div>
+        `;
+
+        // EventTo (Project 3) Research Data (Target persona block removed as requested)
+        const researchHtmlEventTo = `
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase font-extrabold text-brand-600 tracking-widest font-mono">Problems Identified</h4>
+                <p class="text-charcoal-900/60 text-xs">Analysis of core transactional and scheduling roadblocks encountered during product discovery.</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">01. Fragmented Communication</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">Customers struggle to coordinate details across multiple disparate decorators, caterers, and venue managers simultaneously.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">02. Variable Pricing Risks</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">Lack of standard upfront utility rates leaves customers exposed to unexpected vendor cost markups after booking deposits.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">03. Inefficient Scheduling Calendar</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">Double-booking venue timelines and sound system rentals is common due to static, un-synchronized manual vendor databases.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">04. Lack of Dispute Resolution</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">No secure escrow protection exists. If a decorator fails to deliver floral setup quality, customers have zero transactional recourse.</p>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-4 rounded-xl space-y-2">
+                        <div class="text-[10px] font-bold text-brand-600 uppercase font-mono">05. Manual Inventory Auditing</div>
+                        <p class="text-charcoal-900/80 text-xs leading-relaxed">Small vendors waste extensive time validating item counts over messaging strings rather than automated checkout catalogs.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase font-extrabold text-brand-600 tracking-widest font-mono">Qualitative Analysis</h4>
+                <p class="text-charcoal-900/60 text-xs">Direct feedback collected from on-site coordinators and vendors.</p>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                    <div class="bg-white border border-charcoal-900/10 p-5 rounded-xl flex flex-col justify-between space-y-4">
+                        <p class="text-xs text-charcoal-900/80 italic leading-relaxed">"Getting quotes finalized with decorators takes days. Then they tell us the specific roses are out of stock. If they logged live inventory in a marketplace, we could adapt instantly."</p>
+                        <div class="flex items-center space-x-2 pt-3 border-t border-charcoal-900/10">
+                            <div class="w-8 h-8 rounded-full bg-bone-100 flex items-center justify-center font-bold text-xs text-brand-600 font-mono">S</div>
+                            <div>
+                                <h6 class="text-[11px] font-bold text-charcoal-900">Siddharth, 29</h6>
+                                <p class="text-[9px] text-charcoal-900/40">Event Host Coordinator</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-5 rounded-xl flex flex-col justify-between space-y-4">
+                        <p class="text-xs text-charcoal-900/80 italic leading-relaxed">"I manage six high-end JBL acoustic systems. Sometimes clients assume a setup is included when it isn't, causing major arguments. A clear multi-view checklist would save so much trouble."</p>
+                        <div class="flex items-center space-x-2 pt-3 border-t border-charcoal-900/10">
+                            <div class="w-8 h-8 rounded-full bg-bone-100 flex items-center justify-center font-bold text-xs text-brand-600 font-mono">H</div>
+                            <div>
+                                <h6 class="text-[11px] font-bold text-charcoal-900">Hari, 42</h6>
+                                <p class="text-[9px] text-charcoal-900/40">Audio/AV Vendor</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white border border-charcoal-900/10 p-5 rounded-xl flex flex-col justify-between space-y-4">
+                        <p class="text-xs text-charcoal-900/80 italic leading-relaxed">"Reviewing and approving hundreds of individual vendor disputes on catering failures used to take up my whole week. Centralized dispute tools changed everything."</p>
+                        <div class="flex items-center space-x-2 pt-3 border-t border-charcoal-900/10">
+                            <div class="w-8 h-8 rounded-full bg-bone-100 flex items-center justify-center font-bold text-xs text-brand-600 font-mono">N</div>
+                            <div>
+                                <h6 class="text-[11px] font-bold text-charcoal-900">Neha, 34</h6>
+                                <p class="text-[9px] text-charcoal-900/40">Platform Super Administrator</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h4 class="text-xs uppercase font-extrabold text-brand-600 tracking-widest font-mono">User Interview Script</h4>
+                <p class="text-charcoal-900/60 text-xs">Primary investigative questions auditing current multi-vendor booking experiences.</p>
+                <div class="bg-white border border-charcoal-900/10 rounded-xl p-6">
+                    <ol class="list-decimal pl-5 text-xs text-charcoal-900/80 space-y-2 font-mono">
+                        <li>What is your biggest operational hurdle when booking multiple services for an event?</li>
+                        <li>How do you track and verify that vendors have verified availability?</li>
+                        <li>Describe a scenario where a vendor canceled or altered service rates at the last minute.</li>
+                        <li>What tools do you currently use to collect and reconcile individual payments?</li>
+                        <li>How do you verify the credentials and review history of catering or décor teams?</li>
+                        <li>What measures would give you greater peace of mind when placing upfront cash deposits?</li>
+                        <li>Describe how you coordinate floor-planning details with AV crews and venues.</li>
+                        <li>How are booking cancellations or dispute processes currently executed in your team?</li>
+                        <li>What specific features would make a consolidated booking platform valuable to your operations?</li>
+                        <li>How do you handle disputes if a service is delivered below expected quality standards?</li>
+                    </ol>
+                </div>
+            </div>
+        `;
+
+        let canvasPaused = false;
+
+        function openProject(index) {
+            activeProjectIndex = index;
+            activeSlideIndex = 0;
+            const project = projectsData[index];
+
+            // Prevent background page body from scrolling under open popups
+            document.body.style.overflow = 'hidden';
+
+            // Pause canvas animation to free up GPU/CPU for modal & Figma
+            canvasPaused = true;
+
+            // Hide fixed header to prevent visual overlap issues
+            document.getElementById('fixed-header').classList.add('-translate-y-24');
+
+            // For EventTo (index 2), hide carousel controls + heading + dots since it's a single Figma embed
+            const controls = document.getElementById('carousel-controls');
+            const heading = document.getElementById('slide-step-heading');
+            const dots = document.getElementById('carousel-dots-wrapper');
+            if (index === 2) {
+                controls.style.display = 'none';
+                heading.style.display = 'none';
+                dots.style.display = 'none';
+            } else {
+                controls.style.display = '';
+                heading.style.display = '';
+                dots.style.display = '';
+            }
+
+            // Populate text parameters inside popup modal elements
+            document.getElementById('modal-project-domain').innerText = project.domain;
+            document.getElementById('modal-project-title').innerText = project.title;
+            document.getElementById('modal-project-desc').innerText = project.desc;
+            document.getElementById('modal-project-client').innerText = project.client;
+            document.getElementById('modal-project-metrics').innerText = project.metrics;
+            document.getElementById('modal-project-takeaway').innerText = project.takeaway;
+
+            // Render project specific research details dynamically (0: Chat, 1: Sentinel)
+            const researchBox = document.getElementById('modal-research-container');
+            if (index === 0) {
+                researchBox.innerHTML = researchHtmlMyChatLesson;
+                researchBox.classList.remove('hidden');
+            } else if (index === 1) {
+                researchBox.innerHTML = researchHtmlSentinelCommandCenter;
+                researchBox.classList.remove('hidden');
+            } else if (index === 2) {
+                researchBox.innerHTML = researchHtmlEventTo;
+                researchBox.classList.remove('hidden');
+            } else {
+                researchBox.innerHTML = '';
+                researchBox.classList.add('hidden');
+            }
+
+            // Trigger Modal view animation
+            const modal = document.getElementById('project-modal');
+            modal.classList.remove('opacity-0', 'pointer-events-none');
+
+            // Render and sync slide deck contents
+            syncSlideDeck();
+        }
+
+        function closeProject() {
+            // Restore background page body scrolling behaviors
+            document.body.style.overflow = '';
+
+            // Restore fixed header
+            document.getElementById('fixed-header').classList.remove('-translate-y-24');
+
+            const modal = document.getElementById('project-modal');
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            activeProjectIndex = null;
+        }
+
+        function syncSlideDeck() {
+            if (activeProjectIndex === null) return;
+            const project = projectsData[activeProjectIndex];
+            const totalSlides = project.slides.length;
+            const slide = project.slides[activeSlideIndex];
+
+            // Sync step metrics
+            document.getElementById('slide-step-tag').innerText = slide.tag;
+            document.getElementById('carousel-indicator').innerText = `${activeSlideIndex + 1} / ${totalSlides}`;
+
+            // Inject the inner slide template markup
+            const track = document.getElementById('carousel-track-inner');
+            track.innerHTML = slide.html;
+
+            // Inject dot paginators
+            const dotsWrapper = document.getElementById('carousel-dots-wrapper');
+            dotsWrapper.innerHTML = '';
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('button');
+                dot.onclick = () => {
+                    activeSlideIndex = i;
+                    syncSlideDeck();
+                };
+                dot.className = `w-1.5 h-1.5 rounded-full transition-all ${i === activeSlideIndex ? 'bg-brand-500 w-3' : 'bg-charcoal-900/20'}`;
+                dotsWrapper.appendChild(dot);
+            }
+        }
+
+        function nextSlide() {
+            if (activeProjectIndex === null) return;
+            const totalSlides = projectsData[activeProjectIndex].slides.length;
+            activeSlideIndex = (activeSlideIndex + 1) % totalSlides;
+            syncSlideDeck();
+        }
+
+        function prevSlide() {
+            if (activeProjectIndex === null) return;
+            const totalSlides = projectsData[activeProjectIndex].slides.length;
+            activeSlideIndex = (activeSlideIndex - 1 + totalSlides) % totalSlides;
+            syncSlideDeck();
+        }
+
+        function copyToClipboard(text) {
+            // Backup direct copy execution logic
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            // Pop active visual validation toast
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-12', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-12', 'opacity-0');
+            }, 2500);
+        }
+
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let points = [];
+        let mouse = { x: null, y: null };
+
+        function initPoints() {
+            points = [];
+            const numPoints = Math.min(Math.floor((window.innerWidth * window.innerHeight) / 12000), 120);
+            for (let i = 0; i < numPoints; i++) {
+                points.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    r: Math.random() * 1.5 + 1
+                });
+            }
+        }
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initPoints();
+        }
+
+        window.addEventListener('resize', resizeCanvas);
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
+
+            // Sync visual spotlight gradient tracking properties
+            document.getElementById('ambient-spotlight').style.setProperty('--x', `${e.clientX}px`);
+            document.getElementById('ambient-spotlight').style.setProperty('--y', `${e.clientY}px`);
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function animateCanvas() {
+            if (canvasPaused) {
+                requestAnimationFrame(animateCanvas);
+                return;
+            }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Render interactive nodes list
+            for (let i = 0; i < points.length; i++) {
+                let p = points[i];
+
+                // Standard drift speed logic
+                p.x += p.vx;
+                p.y += p.vy;
+
+                // Bounce off visual bounds
+                if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+
+                // Draw central pixel point node
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(28, 28, 30, 0.25)';
+                ctx.fill();
+
+                // Connect adjacent nodes
+                for (let j = i + 1; j < points.length; j++) {
+                    let p2 = points[j];
+                    let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if (dist < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = `rgba(28, 28, 30, ${0.04 * (1 - dist / 120)})`;
+                        ctx.stroke();
+                    }
+                }
+
+                // Interactive gravity pull on mouse coordinate proximity
+                if (mouse.x !== null && mouse.y !== null) {
+                    let mDist = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+                    if (mDist < 180) {
+                        // Draw light glowing linkage lines to cursor position
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.strokeStyle = `rgba(255, 146, 107, ${0.08 * (1 - mDist / 180)})`;
+                        ctx.stroke();
+
+                        // Gentle attractive pull
+                        p.x += (mouse.x - p.x) * 0.005;
+                        p.y += (mouse.y - p.y) * 0.005;
+                    }
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.onload = function() {
+            resizeCanvas();
+            animateCanvas();
+
+            // Setup dynamic cursor projection variables for all portfolio cards
+            document.querySelectorAll('.glass-card').forEach(card => {
+                card.addEventListener('mousemove', e => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        };
+    </script>
+</body>
+</html>
